@@ -1,11 +1,11 @@
 openapi: 3.0.0
 info:
-  title: 0xOptimal Advertisement Decision API
+  title: 0xOptimal Ads API
   version: 1.0.0
   description: |
-    The 0xOptimal Advertisement API serves relevant web3 ads based on multiple targeting parameters, including blockchain activity. 
+    The 0xOptimal Ads API serves relevant web3 ads based on multiple targeting parameters, including blockchain activity. 
 
-    In order to use the API, you should first get in touch to be onboarded as a publisher
+    In order to use the API, you should first get in touch to be onboarded as a publisher and obtain your publisher `slug` or id string and define what `ad_type`s you can display in your website / app.
 servers:
   - url: https://i.useoptimal.xyz
     description: Production server
@@ -20,7 +20,7 @@ paths:
   /api/v1/decision/:
     get:
       summary: Request an advertisement impression
-      description: Make a decision on an `Advertisement` to show based on various factors like publisher, placements, user agent details, geography, keywords, and blockchain activity.
+      description: Make a decision on an `Advertisement` to show based on various parameters like publisher, placements, user agent details, geography, keywords, and blockchain activity.
       tags:
         - ad
       parameters:
@@ -120,7 +120,7 @@ paths:
                     description: HTML rendering of the ad.
                   link:
                     type: string
-                    description: Click URL for the ad.
+                    description: Click URL for the ad. This is where the user should be taken when clicking the ad.
                   view_url:
                     type: string
                     description: View URL to count an ad view.
@@ -130,9 +130,9 @@ paths:
                   nonce:
                     type: string
                     description: A one-time nonce.
-                  display_type:
+                  ad_type:
                     type: string
-                    description: Type of ad.
+                    description: Type of ad (e.g. text-cta, sq-img-text-box).
                   div_ids:
                     type: string
                     description: Placement ID.
