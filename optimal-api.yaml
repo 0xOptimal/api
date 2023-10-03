@@ -1,0 +1,141 @@
+openapi: 3.0.0
+info:
+  title: 0xOptimal Advertisement Decision API
+  version: 1.0.0
+  description: |
+    The 0xOptimal Advertisement API serves relevant web3 ads based on multiple targeting parameters, including blockchain activity.
+
+    In order to use the API, you should first get in touch to be onboarded as a publisher
+servers:
+  - url: https://i.useoptimal.xyz
+    description: Production server
+  - url: http://localhost:8000
+    description: Development server
+host: i.useoptimal.xyz
+basePath: /v1
+tags:
+  - name: "ad"
+  - description: "Request an ad impression"
+paths:
+  /api/v1/decision/:
+    get:
+      summary: Request an advertisement impression
+      description: Make a decision on an `Advertisement` to show based on various factors like publisher, placements, user agent details, geography, keywords, and blockchain activity.
+      tags:
+        - ad
+      parameters:
+        - name: publisher
+          in: query
+          description: The slug of the publisher.
+          required: true
+          schema:
+            type: string
+          example: test-publisher
+        - name: div_ids
+          in: query
+          description: A `|` delimited string of placement ids.
+          schema:
+            type: string
+        - name: ad_types
+          in: query
+          required: true
+          description: A `|` delimited string of ad types.
+          schema:
+            type: string
+          example: tw-token
+        - name: priorities
+          in: query
+          description: An optional `|` delimited string of priorities.
+          schema:
+            type: string
+        - name: keywords
+          in: query
+          description: A `|` delimited string of keywords.
+          schema:
+            type: string
+        - name: campaign_types
+          in: query
+          description: A `|` delimited string of campaign types.
+          schema:
+            type: string
+        - name: url
+          in: query
+          description: The URL of the requesting page.
+          schema:
+            type: string
+        - name: format
+          in: query
+          description: Format can optionally be specified as `jsonp`. Leave empty otherwise.
+          schema:
+            type: string
+        - name: callback
+          in: query
+          description: Callback for a JSONP request.
+          schema:
+            type: string
+        - name: force_ad
+          in: query
+          description: Limit results to a specific ad.
+          schema:
+            type: string
+        - name: force_campaign
+          in: query
+          description: Limit results to ads from a specific campaign.
+          schema:
+            type: string
+        - name: render_html
+          in: query
+          description: Include rendered HTML for the ad.
+          schema:
+            type: boolean
+          default: false
+        - name: wallets
+          in: query
+          description: |
+            A `|` delimited list of the viewer's wallets in the format "chain:wallet_address".<br/><br/>
+            
+            `chain` can be an integer or a string (eg. `1`, `ethereum`, `eth`). See <a href=chain_ids.html>chain names and ids</a><br/>
+            `wallet_address` is the full string representation of that wallet, as is used by default on that L1 chain. 
+            <br/><br/>
+            The first wallet submitted should be the users's main/first wallet. The others can appear in any order.
+          schema:
+            type: string
+          example: 1:0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045|1:0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The advertisement slug of the chosen ad.
+                  copy:
+                    type: object
+                    description: A breakdown of the ad into text body content, optional headline, and optional CTA.
+                  html:
+                    type: string
+                    description: HTML rendering of the ad.
+                  link:
+                    type: string
+                    description: Click URL for the ad.
+                  view_url:
+                    type: string
+                    description: View URL to count an ad view.
+                  view_time_url:
+                    type: string
+                    description: URL endpoint for view time.
+                  nonce:
+                    type: string
+                    description: A one-time nonce.
+                  display_type:
+                    type: string
+                    description: Type of ad.
+                  div_ids:
+                    type: string
+                    description: Placement ID.
+                  campaign_type:
+                    type: string
+                    description: Type of campaign.
