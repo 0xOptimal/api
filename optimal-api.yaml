@@ -42,7 +42,7 @@ paths:
           description: A `|` delimited string of ad types.
           schema:
             type: string
-          example: tw-token
+          example: sq-img-text-box
         - name: priorities
           in: query
           description: An optional `|` delimited string of priorities.
