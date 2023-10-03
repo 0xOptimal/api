@@ -3,7 +3,7 @@ info:
   title: 0xOptimal Advertisement Decision API
   version: 1.0.0
   description: |
-    The 0xOptimal Advertisement API serves relevant web3 ads based on multiple targeting parameters, including blockchain activity.
+    The 0xOptimal Advertisement API serves relevant web3 ads based on multiple targeting parameters, including blockchain activity. 
 
     In order to use the API, you should first get in touch to be onboarded as a publisher
 servers:
