@@ -5,7 +5,7 @@ info:
   description: |
     The 0xOptimal Ads API serves relevant web3 ads based on multiple targeting parameters, including blockchain activity. 
 
-    In order to use the API, you should first get in touch to be onboarded as a publisher and obtain your publisher `slug` or id string and define what `ad_type`s you can display in your website / app.
+    In order to use the API, you should first <a href="mailto:nb@getoptimal.xyz">get in touch</a> to be onboarded as a publisher and obtain your publisher `slug` (unique id string) and define what `ad_type`s you can display in your website / app.
 servers:
   - url: https://i.useoptimal.xyz
     description: Production server
